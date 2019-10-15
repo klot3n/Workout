@@ -13,15 +13,21 @@ import android.widget.TextView
 class WorkoutDetailFragment :Fragment() {
 
     var workoutId: Long? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState!=null) workoutId=savedInstanceState.getLong("workoutId")
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_workout_detail, container, false)
     }
 
-    override fun onStart() {
+    override fun onStart(){
         super.onStart()
         val view=view
         if (view!=null){
-            val workout = /*workoutId.toString()*/Workout.workouts[workoutId!!.toInt()]    //Если [2] -> "5 Pull-ups...
+            val workout = Workout.workouts[workoutId!!.toInt()]
             val title = view.findViewById<TextView>(R.id.textTitle)
             title.setText(workout.name)
             val description = view.findViewById<TextView>(R.id.textDescription)
@@ -29,6 +35,10 @@ class WorkoutDetailFragment :Fragment() {
 
         }
 
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {savedInstanceState
+        savedInstanceState.putLong("workoutId", workoutId!!.toLong())
     }
 
     fun setWorkout (id :Long){

@@ -27,11 +27,7 @@ class StopWatchFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val layout = inflater.inflate(R.layout.fragment_stopwatch, container, false)//.apply {
-//            start_button.setOnClickListener { running = true }
-//        stop_button.setOnClickListener { running = false }
-//        reset_button.setOnClickListener { running = false; seconds = 0 }
-//        }
+        val layout = inflater.inflate(R.layout.fragment_stopwatch, container, false)
         runTimer(layout)
         return layout
     }
@@ -53,23 +49,15 @@ class StopWatchFragment : Fragment() {
         outState.putBoolean("wasRunning", wasRunning)
     }
 
-//    private fun onClickStart() {
-//        running = true
-//    }
-//
-//    private fun onClickStop() {
-//        running = false
-//    }
-//
-//    private fun onClickReset() {
-//        running = false
-//        seconds = 0
-//    }
     private fun runTimer (view :View) {
         val timeView = view.findViewById<TextView>(R.id.time_view)
-//        start_button.setOnClickListener { running = true; start_button.text = "!!!!!!!!!!!" }
-//        stop_button.setOnClickListener { running = false }
-//        reset_button.setOnClickListener { running = false; seconds = 0 }
+    val start_button = view.findViewById<TextView>(R.id.start_button)
+    val stop_button = view.findViewById<TextView>(R.id.stop_button)
+    val reset_button = view.findViewById<TextView>(R.id.reset_button)
+
+        start_button.setOnClickListener { running = true;}
+        stop_button.setOnClickListener { running = false }
+        reset_button.setOnClickListener { running = false; seconds = 0 }
         handler.post( object : Runnable {
             override fun run() {
                 val hours = seconds/3600

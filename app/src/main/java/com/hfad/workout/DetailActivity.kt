@@ -9,10 +9,11 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        val frag = WorkoutDetailFragment()
-        val workoutId:Long = intent.getLongExtra("id",213)
-        frag.setWorkout(workoutId)
-        supportFragmentManager.beginTransaction().replace(R.id.detail_frag,frag).commit()
-
+        if (savedInstanceState==null){
+            val frag = WorkoutDetailFragment()
+            val workoutId:Long = intent.getLongExtra("id",213)
+            frag.setWorkout(workoutId)
+            supportFragmentManager.beginTransaction().replace(R.id.detail_frag,frag).commit()
+        }
     }
 }
